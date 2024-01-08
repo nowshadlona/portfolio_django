@@ -310,34 +310,35 @@
 									<h4 class="card-title">About</h4>
 								</div>
 								<div class="card-body">
-									<form action="{% url 'about_insert' %}" method="post">
+									<form action="{% url 'about_edit' %}" method="post">
 										{% csrf_token %}
 										<div class="form-group row">
 											<label class="col-form-label col-md-2">name</label>
 											<div class="col-md-10">
+                                                <input type="hidden" name="id" value="{{data.id}}">
 												<input type="text" class="form-control"
-												name="uname">
+												name="uname" value="{{data.u_name}}">
 											</div>
 								 		</div>											
 										<div class="form-group row">
 											<label class="col-form-label col-md-2">date of birth</label>
 											<div class="col-md-10">
 												<input type="date" class="form-control"
-												name="dob">
+												name="dob" value="{{data.dob}}">
 											</div>
 										</div>																							
 										<div class="form-group row">
 											<label class="col-form-label col-md-2">phone</label>
 											<div class="col-md-10">
 												<input type="text" class="form-control"
-												name="phone">
+												name="phone" value="{{data.phone}}">
 											</div>
 										</div>
 										<div class="form-group row">
 											<label class="col-form-label col-md-2">email</label>
 											<div class="col-md-10">
 												<input type="email" class="form-control"
-												name="email">
+												name="email" value="{{data.email}}">
 											</div>
 										</div>
 										<div class="form-group row">
@@ -345,42 +346,42 @@
 												experience</label>
 											<div class="col-md-10">
 												<input type="number" class="form-control"
-												name="exp">
+												name="exp" value="{{data.no_exp}}">
 											</div>
 										</div>
 										<div class="form-group row">
 											<label class="col-form-label col-md-2">no of happy customers</label>
 											<div class="col-md-10">
 												<input type="number" class="form-control"
-												name="no_cust">
+												name="no_cust" value="{{data.no_happy_customers}}">
 											</div>
 										</div>
 										<div class="form-group row">
 											<label class="col-form-label col-md-2">no of projects Finished</label>
 											<div class="col-md-10">
 												<input type="number" class="form-control"
-												name="no_project">
+												name="no_project" value="{{data.no_project_finished}}">
 											</div>
 										</div>
 										<div class="form-group row">
 											<label class="col-form-label col-md-2">no of digital awards</label>
 											<div class="col-md-10">
 												<input type="number" class="form-control"
-												name="no_of_awards">
+												name="no_of_awards" value="{{data.no_digital_awards}}">
 											</div>
 										</div>
 										<div class="form-group row">
 											<label class="col-form-label col-md-2">description</label>
 											<div class="col-md-10">
 												<input type="text" class="form-control"
-												name="desc">
+												name="desc" value="{{data.description}}">
 											</div>
 										</div>
 										<div class="form-group row">
 											<!-- <label class="col-form-label col-md-2">name</label> -->
 											<div class="col-md-10">
 												<input type="submit" class="form-control"
-												name="" value="submit">
+											    value="Edit">
 											</div>					
 										</div>
 										<!-- <div class="form-group row">
@@ -517,64 +518,7 @@
 								</div>
 							</div> -->
 						</div>
-						<div class="col-lg-12">
-							<div class="card">
-								<div class="card-header">
-									<h4 class="card-title">About Table</h4>
-								</div>
-								<div class="card-body">
-									<div class="table-responsive">
-										<table class="table mb-0">
-											<thead>
-												<tr>
-													<th>sl</th>
-													<th>name</th>
-													<th>date of birth</th>
-													<th>phone</th>
-													<th>email</th>
-													<th>years of experience</th>
-													<th>no of happy customers</th>
-													<th>no of projects finished</th>													
-													<th>no of digital awards</th>
-													<th>description</th>
-													<th>date and time</th>
-													<th>Action</th>													
-												</tr>
-											</thead>
-											<tbody>
-												{% for i in d %}
-												<tr>
-													<td>{{forloop.counter}}</td>
-													<td>{{i.u_name}}</td>
-													<td>{{i.dob}}</td>
-													<td>{{i.phone}}</td>
-													<td>{{i.email}}</td>
-													<td>{{i.no_exp}}</td>
-													<td>{{i.no_happy_customers}}</td>
-													<td>{{i.no_project_finished}}</td>													
-													<td>{{i.no_digital_awards}}</td>
-													<td>{{i.description}}</td>
-													<td>{{i.date_time}}</td>
-													<td><a href="{% url 'edit_index' i.id %}">Edit</a>/<a href="{% url 'delete_index' i.id %}">Delete</a></td>													
-													
-												</tr>
-												{% endfor %}
-												<!-- <tr> -->
-													<!-- <td>Mary</td>
-													<td>Moe</td>
-													<td>mary@example.com</td>
-												</tr>
-												<tr>
-													<td>July</td>
-													<td>Dooley</td>
-													<td>july@example.com</td>
-												</tr> -->
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-						</div>
+
 					</div>
 				
 				</div>			
