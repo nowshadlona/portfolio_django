@@ -309,6 +309,14 @@
 								<div class="card-header">
 									<h4 class="card-title">About</h4>
 								</div>
+								{% if msg %}
+									{% for i in msg %}
+									<div class="alert alert-warning">
+										<h4 class="card-title">{{i}}</h4>
+									</div>
+									<!-- <h2 style="background-color: rgb(254, 116, 4); color: red; text-align: center;">{{i}}</h2> -->
+									{% endfor %}
+								{% endif %}	
 								<div class="card-body">
 									<form action="{% url 'about_insert' %}" method="post">
 										{% csrf_token %}
@@ -516,12 +524,12 @@
 									</form>
 								</div>
 							</div> -->
-						</div>
+						<!-- </div> -->
 						<div class="col-lg-12">
 							<div class="card">
 								<div class="card-header">
 									<h4 class="card-title">About Table</h4>
-								</div>
+								</div>								
 								<div class="card-body">
 									<div class="table-responsive">
 										<table class="table mb-0">
