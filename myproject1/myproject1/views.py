@@ -160,4 +160,3 @@ def delete_index(request,id):
     data.delete()
     return redirect('about')
 
-
