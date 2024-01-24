@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .confirmation-message {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .confirmation-message h2 {
+            color: #333333;
+        }
+
+        .confirmation-message p {
+            color: #666666;
+        }
+
+        .confirmation-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .confirmation-button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    {% if d %}
+    <div class="confirmation-container">
+        <h1>Important Notification</h1>
+        <p>you have already verified this activation link</p>
+        <a href="#" class="confirmation-button">Confirm Email</a>
+    </div>
+    {% else %}
+   
+    <div class="confirmation-container">
+        <h1>congratulations</h1>
+        <p>you have successfully registered</p>
+        <a href="#" class="confirmation-button">Confirm Email</a>
+    </div>
+    {% endif %}
+</body>
+</html>

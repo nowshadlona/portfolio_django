@@ -12,6 +12,10 @@ from django.core.mail import send_mail
 from datetime import datetime
 from django.utils.html import format_html
 
+def reg_confirm(request):
+    return render(request, 'reg_conf.html')
+
+
 def demo(request):
     title = "this is a demo html"
     name = "lona"
@@ -29,14 +33,29 @@ def about_index(request):
     # print("this is a root url function ")
     return render(request,'admin/about.html',data)
 
-
+# def reg_confirm(request):
+#     return render(request,'reg_conf.html')
 
 
 def email_verify(request,id):
     data = About.objects.get(v_c=id)
-    data.v_status = 1
-    data.save()
-    return redirect('about')
+    bool_var = False
+    if data.v_status=='0':
+        bool_var = False
+        
+        data.v_status = 1
+        data.save()       
+
+        # return HttpResponse("This is zero")
+    else:
+        bool_var = True
+    print(bool_var)
+
+    bool_dic = {'d':bool_var}
+    return render(request,'success.html',bool_dic)
+        # return HttpResponse("This is one")
+
+    
 
     # return HttpResponse(id)
 def about_insert(request):
@@ -109,7 +128,7 @@ def about_insert(request):
 
 
     # print("this is a root url function ")
-    return redirect('about')
+    return redirect('reg_conf')
 
 def edit_index(request,id):
 
