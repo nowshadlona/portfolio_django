@@ -24,14 +24,42 @@ def demo(request):
     # print("this is a root url function ")
     return render(request,'demo/portfolio.html',data)
 
-def about_index(request):  
+def login(request):
+    if 'user_id' in request.session:
+        return redirect('about')
+    else:
+        return render(request,'login.html')
+    
+def logout(request):
+    request.session.flush()
+    return redirect('login')
 
-    all_data = About.objects.all()
-    msg = messages.get_messages(request)
-    # print(msg)
-    data = {'d': all_data,'msg':msg}  
-    # print("this is a root url function ")
-    return render(request,'admin/about.html',data)
+
+def login_admin(request):
+    email = request.POST.get('email')
+    password = request.POST.get('pass')
+    log_data = About.objects.get(email=email)
+
+    if(log_data.password==password and log_data.v_status=='1'):
+        request.session['user_id'] = log_data.id
+        request.session['user_name'] = log_data.u_name
+        return redirect('about')
+    else:
+        return redirect('login')
+
+        # return render(request,'admin/about.html')
+
+def about_index(request):
+    if 'user_id' in request.session:  
+
+        all_data = About.objects.all()
+        msg = messages.get_messages(request)
+        print(msg)
+        data = {'d': all_data,'msg':msg}  
+        # print("this is a root url function ")
+        return render(request,'admin/about.html',data)
+    else:
+        return redirect('login')
 
 # def reg_confirm(request):
 #     return render(request,'reg_conf.html')
@@ -69,7 +97,8 @@ def about_insert(request):
     no_of_awards = request.POST.get('no_of_awards') 
     desc = request.POST.get('desc') 
     current_datetime = datetime.now()
-    formatted_datetime = current_datetime.strftime("%d %b %Y - %I:%M %p")  
+    formatted_datetime = current_datetime.strftime("%d %b %Y - %I:%M %p")
+    password = request.POST.get('password')  
     pattern = r"^[a-zA-Z0-9_.]+@gmail\.com$" 
 
     #  check if any of the required fields is empty
@@ -124,6 +153,7 @@ def about_insert(request):
     about_obj.date_time = formatted_datetime
     about_obj.v_c = encrypted_value
     about_obj.v_status = 0
+    about_obj.password = password
     about_obj.save()
 
 
