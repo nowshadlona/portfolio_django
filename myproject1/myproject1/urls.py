@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 from . import views
 from .views import reg_confirm
 urlpatterns = [
@@ -32,5 +32,6 @@ urlpatterns = [
     path('admin/edit/',views.about_edit,name='about_edit'),
     path('admin/delete/<int:id>',views.delete_index,name='delete_index'),
     path("admin/user/email_verification/<str:id>",views.email_verify,name='email_verify'),
+    path('social-auth/',include('social_django.urls',namespace='social')),
 ]
 

@@ -50,16 +50,16 @@ def login_admin(request):
         # return render(request,'admin/about.html')
 
 def about_index(request):
-    if 'user_id' in request.session:  
+    # if 'user_id' in request.session:  
 
-        all_data = About.objects.all()
-        msg = messages.get_messages(request)
-        print(msg)
-        data = {'d': all_data,'msg':msg}  
-        # print("this is a root url function ")
-        return render(request,'admin/about.html',data)
-    else:
-        return redirect('login')
+    all_data = About.objects.all()
+    msg = messages.get_messages(request)
+    print(msg)
+    data = {'d': all_data,'msg':msg}  
+    # print("this is a root url function ")
+    return render(request,'admin/about.html',data)
+    # else:
+    #     return redirect('login')
 
 # def reg_confirm(request):
 #     return render(request,'reg_conf.html')
