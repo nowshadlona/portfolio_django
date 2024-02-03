@@ -16,16 +16,20 @@ def reg_confirm(request):
     return render(request, 'reg_conf.html')
 
 
-def demo(request):
-    title = "this is a demo html"
-    name = "lona"
-    product_name = ['p1','p2','p3']
-    data = {"t":title,'name':name,'prod':product_name}
+def home(request):
+    data = About.objects.first()
+    context_data = {'d':data}
+    # title = "this is a demo html"
+    # name = "lona"
+    # product_name = ['p1','p2','p3']
+    # data = {"t":title,'name':name,'prod':product_name}
     # print("this is a root url function ")
-    return render(request,'demo/portfolio.html',data)
+    return render(request,'demo/portfolio.html',context_data)
 
 def login(request):
-    if 'user_id' in request.session:
+    google_data = request.session.get('social_auth_google-oauth2')
+    if 'user_id' in request.session or google_data:
+    # if 'user_id' in request.session:
         return redirect('about')
     else:
         return render(request,'login.html')
@@ -50,16 +54,18 @@ def login_admin(request):
         # return render(request,'admin/about.html')
 
 def about_index(request):
+    google_data = request.session.get('social_auth_google-oauth2')
+    if 'user_id' in request.session or google_data:
     # if 'user_id' in request.session:  
 
-    all_data = About.objects.all()
-    msg = messages.get_messages(request)
-    print(msg)
-    data = {'d': all_data,'msg':msg}  
-    # print("this is a root url function ")
-    return render(request,'admin/about.html',data)
-    # else:
-    #     return redirect('login')
+        all_data = About.objects.all()
+        msg = messages.get_messages(request)
+        print(msg)
+        data = {'d': all_data,'msg':msg}  
+        # print("this is a root url function ")
+        return render(request,'admin/about.html',data)
+    else:
+        return redirect('login')
 
 # def reg_confirm(request):
 #     return render(request,'reg_conf.html')

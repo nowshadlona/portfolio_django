@@ -21,7 +21,7 @@ from .views import reg_confirm
 urlpatterns = [
     # path('admin/', admin.site.urls),
 
-    path('',views.demo),
+    path('',views.home),
     path('login',views.login,name='login'),
     path('logout',views.logout,name='logout'),
     path('login/admin',views.login_admin,name='login_admin'),

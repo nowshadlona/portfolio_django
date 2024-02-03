@@ -145,3 +145,9 @@ AUTHENTICATION_BACKENDS = [
 LOGIN_REDIRECT_URL = 'about'
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '363897704942-rv6qd77q45lhuse19jqk2d119862v0lt.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+
+SOCIAL_AUTH_PIPELINE = (
+    # ... other pipeline steps ...
+    'myproject1.pipeline.capture_social_auth_data',  # Add this line
+    # ... other pipeline steps ...
+)
