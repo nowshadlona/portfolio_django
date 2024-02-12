@@ -6,19 +6,23 @@ from .models import Districts
 
 
 def index(request):
-    data = Divisions.objects.all()
-    data_context = {'d':data}
+    data = Divisions.objects.all().order_by('divisionname')
+    data2 = Districts.objects.select_related('div_id').all()
+    data_context = {'d':data,'d2':data2}
     return render(request,'admin/district.html',data_context)
 
-def district_insert(request):
-    idddd = request.POST.get('id')
-    nammmm = request.POST.get('name')
-    div_idddd = Divisions.objects.get(id=idddd)
 
-    dist = Districts()
-    
-    dist.Districtname = nammmm
-    dist.div_id = div_idddd
-    dist.save()
+def district_insert(request):
+    id = request.POST.get('id')
+    name = request.POST.get('name')
+
+    dis_obj = Districts()
+
+    div_obj = Divisions.objects.get(id=id)
+
+    dis_obj.districtname = name
+    dis_obj.div_id = div_obj
+    dis_obj.save()
 
     return redirect('dis_index')
+
