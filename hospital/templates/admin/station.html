@@ -337,15 +337,15 @@
 								<h4 class="card-title">About</h4>
 							</div>
 							<div class="card-body">
-								<form action="{% url 'district_insert' %}" method="post">
+								<form action="{% url 'station_insert' %}" method="post">
 									{% csrf_token %}
 									<div class="form-group row">
 										<label class="col-form-label col-md-2">Select Division</label>
 										<div class="col-md-10">
-											<select class="form-control" name="id">
+											<select class="form-control" name="div_id">
 												<option>-- Select --</option>
-												{% for i in d2 %}
-												<option value="{{i.div_id.id}}">{{i}}</option>
+												{% for i,j in d2 %}
+												<option value="{{j}}">{{i}}</option>
 												{% endfor %}
 											</select>
 										</div>
@@ -355,12 +355,13 @@
 										<div class="col-md-10">
 											<select name="dis_id" class="form-control">
 												<option>-- Select --</option>
-												{% for i in d2 %}
-												<option value="{{i.id }}">{{i.districtname}}</option>
+												{% for j in d3 %}
+												<option value="{{j.id }}">{{j.Districtname}}</option>
 												{% endfor %}
 											</select>
 										</div>
-									</div> 
+									</div>
+
 									<div class="form-group row">
 										<label class="col-form-label col-md-2">name</label>
 										<div class="col-md-10">

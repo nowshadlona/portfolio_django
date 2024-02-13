@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'hospital',
     'division',
     'district',
+    'station'
     
     
 ]
