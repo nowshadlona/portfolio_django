@@ -7,9 +7,9 @@ from django.db.models import Count
 
 def index(request):
     # data = Divisions.objects.all().order_by('divisionname')
-    # data2 = Districts.objects.values_list('div_id_name', flat=True).distinct()
-    # data_context = {'d2':data2}
-    return render(request,'admin/station.html')
+    data2 = Districts.objects.values_list('div_id__divisionname', flat=True).distinct()
+    data_context = {'d2':data2}
+    return render(request,'admin/station.html',data_context)
 
 
 def district_insert(request):
