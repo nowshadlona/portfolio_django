@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'division',
     'district',
     
+    
 ]
 
 MIDDLEWARE = [
