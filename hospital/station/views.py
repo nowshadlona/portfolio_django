@@ -14,8 +14,9 @@ def index(request):
     # data3 = Districts.objects.values_list('Districtname', flat=True).distinct()
     
     data3 = Districts.objects.all()
+    data4 = Station.objects.select_related('div_id','dis_id').all()
 
-    data_context = {'d2':data2,'d3':data3}
+    data_context = {'d2':data2,'d3':data3,'d4':data4}
     return render(request,'admin/station.html',data_context)
 
 # import pandas as pd

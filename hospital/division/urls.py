@@ -22,4 +22,5 @@ urlpatterns = [
     # path('admin/', admin.site.urls),
     path("", v.index, name='index'),
     path("insert/", v.insert,name='division_insert'),
+    path("search/", v.search,name='division_search'),
 ]

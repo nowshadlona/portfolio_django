@@ -399,15 +399,19 @@
 													<th>sl</th>
 													<th>Division name</th>
 													<th>District Name</th>
-													<th>Action										
+													<th>Name</th>
+													<th>image</th>
+																							
 												</tr>
 											</thead>
 											<tbody>
-												{% for j in d2 %}
+												{% for k in d4 %}
 												<tr>
 													<td>{{forloop.counter}}</td>
-													<td>{{j.div_id.divisionname}}</td>
-													<td>{{j.Districtname}}</td>
+													<td>{{k.div_id.divisionname}}</td>
+													<td>{{k.dis_id.Districtname}}</td>
+													<td>{{k.name}}</td>
+													<td><img src="{{k.image.url}}"></td>
 												</tr>
 												{% endfor %}
 											</tbody>

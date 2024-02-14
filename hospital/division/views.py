@@ -19,3 +19,11 @@ def insert(request):
    div.divisionname= name
    div.save()
    return redirect('index')
+
+def search(request): 
+   search_value = request.POST.get('search')
+   search_result = Divisions.objects.filter(divisionname__icontains=search_value)
+   print(len(search_result))
+   return HttpResponse(len(search_result))
+
+   
